@@ -31,24 +31,30 @@ export const useAdmin = () => {
 
   const checkAuthStatus = async () => {
     try {
-      const { data: { user }, error } = await supabase.auth.getUser();
+      const { data: { session } } = await supabase.auth.getSession();
 
-      if (error) {
+      if (!session?.user) {
         setIsAdmin(false);
+        setUser(null);
         setLoading(false);
         return;
       }
 
-      if (!user) {
+      const { data: { user }, error } = await supabase.auth.getUser();
+
+      if (error || !user) {
         setIsAdmin(false);
+        setUser(null);
         setLoading(false);
         return;
       }
 
       setUser(user);
       setIsAdmin(true);
+      setLoading(false);
     } catch (error: any) {
       setIsAdmin(false);
+      setUser(null);
       setLoading(false);
     }
   };
