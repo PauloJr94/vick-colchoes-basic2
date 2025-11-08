@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import ProductCard from "./ProductCard";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useCategoryFilter } from "@/hooks/useCategoryFilter";
 
 interface Product {
   id: string;
@@ -21,7 +21,7 @@ interface Product {
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const { selectedCategory } = useCategoryFilter();
 
   useEffect(() => {
     fetchProducts();
