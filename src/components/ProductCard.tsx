@@ -54,9 +54,12 @@ const ProductCard = ({
       </CardContent>
 
       <CardFooter className="p-4 pt-0">
-        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold group/btn">
-          <ShoppingCart className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
-          Comprar
+        <Button
+          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold group/btn"
+          onClick={() => navigate(`/produto/${id}`)}
+        >
+          <Eye className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
+          Visualizar Item
         </Button>
       </CardFooter>
     </Card>
