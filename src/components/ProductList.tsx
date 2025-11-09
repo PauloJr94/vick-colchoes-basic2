@@ -41,6 +41,7 @@ const ProductList = () => {
         .order("created_at", { ascending: false });
 
       if (error) throw error;
+      console.log("Produtos carregados:", data);
       setProducts(data || []);
     } catch (error) {
       console.error("Erro ao carregar produtos:", error);
