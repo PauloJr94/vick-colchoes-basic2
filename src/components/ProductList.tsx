@@ -38,11 +38,15 @@ const ProductList = () => {
 
       if (categoriesError) throw categoriesError;
 
+      console.log("Categories data:", categoriesData);
+
       // Create a map of category IDs to names
       const categoryMap: Record<string, string> = {};
       categoriesData?.forEach((cat: any) => {
         categoryMap[cat.id] = cat.name;
       });
+
+      console.log("Category map:", categoryMap);
 
       // Fetch products
       const { data, error } = await supabase
