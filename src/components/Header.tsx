@@ -124,7 +124,7 @@ const Header = () => {
               type="text"
               placeholder="Buscar por nome ou categoria..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => handleSearch(e.target.value)}
               className="pl-10 pr-4 py-2 w-full"
             />
           </div>
