@@ -3,6 +3,8 @@ import { supabase } from "@/integrations/supabase/client";
 import ProductCard from "./ProductCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useCategoryFilter } from "@/hooks/useCategoryFilter";
+import { useProductSearch } from "@/hooks/useProductSearch";
+import SearchBar from "./SearchBar";
 
 interface Product {
   id: string;
