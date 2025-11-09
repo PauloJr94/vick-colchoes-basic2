@@ -1,5 +1,6 @@
-import { User, Menu, MapPin, Phone, Mail } from "lucide-react";
+import { User, Menu, MapPin, Phone, Mail, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useCategoryFilter } from "@/hooks/useCategoryFilter";
