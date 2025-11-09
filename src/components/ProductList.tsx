@@ -30,23 +30,36 @@ const ProductList = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
+
+      // First, fetch all categories
+      const { data: categoriesData, error: categoriesError } = await supabase
+        .from("categories")
+        .select("id, name");
+
+      if (categoriesError) throw categoriesError;
+
+      // Create a map of category IDs to names
+      const categoryMap: Record<string, string> = {};
+      categoriesData?.forEach((cat: any) => {
+        categoryMap[cat.id] = cat.name;
+      });
+
+      // Fetch products
       const { data, error } = await supabase
         .from("products")
-        .select(`
-          *,
-          categories (
-            name
-          )
-        `)
+        .select("*")
         .order("created_at", { ascending: false });
 
       if (error) throw error;
-      console.log("Produtos carregados:", data);
-      if (data && data.length > 0) {
-        console.log("Primeiro produto estrutura:", data[0]);
-        console.log("Tem categories?", data[0].categories);
-      }
-      setProducts(data || []);
+
+      // Map products with category names
+      const productsWithCategories = (data || []).map((product: any) => ({
+        ...product,
+        categories: product.category_id ? { name: categoryMap[product.category_id] } : null
+      }));
+
+      console.log("Produtos com categorias:", productsWithCategories);
+      setProducts(productsWithCategories);
     } catch (error) {
       console.error("Erro ao carregar produtos:", error);
       setProducts([]);
