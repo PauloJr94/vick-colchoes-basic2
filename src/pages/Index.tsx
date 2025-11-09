@@ -4,17 +4,20 @@ import CategoryIcons from "@/components/CategoryIcons";
 import ProductList from "@/components/ProductList";
 import Footer from "@/components/Footer";
 import { CategoryFilterProvider } from "@/hooks/useCategoryFilter";
+import { ProductSearchProvider } from "@/hooks/useProductSearchContext";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <CategoryFilterProvider>
-        <Header />
-        <main>
-          <PromoBanner />
-          <CategoryIcons />
-          <ProductList />
-        </main>
+        <ProductSearchProvider>
+          <Header />
+          <main>
+            <PromoBanner />
+            <CategoryIcons />
+            <ProductList />
+          </main>
+        </ProductSearchProvider>
       </CategoryFilterProvider>
       <Footer />
     </div>
