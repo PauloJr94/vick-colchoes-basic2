@@ -42,6 +42,10 @@ const ProductList = () => {
 
       if (error) throw error;
       console.log("Produtos carregados:", data);
+      if (data && data.length > 0) {
+        console.log("Primeiro produto estrutura:", data[0]);
+        console.log("Tem categories?", data[0].categories);
+      }
       setProducts(data || []);
     } catch (error) {
       console.error("Erro ao carregar produtos:", error);
